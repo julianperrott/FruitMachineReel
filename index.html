@@ -5,16 +5,71 @@
     <script src="script.js"></script>
 </head>
 <h1>Fruit Machine Reels - Using moving IMG tags</h1>
-<body ng-app="myApp" ng-controller="fruitMachine as vm">
+<body ng-app="myApp">
+<div  ng-controller="fruitMachine as vm">
         <div style="background: grey; height:620px; width:825px;position:absolute; left:10px; top: 120px;">
             <div ng-repeat="reel in vm.reelViews" ng-style="{ position: 'absolute', top: '10px', left: {{reel.index*135 +10}}+'px', width: '130px', height: '600px',background: 'white'}">
                 <div ng-repeat="v in reel" ng-style="{ position: 'absolute', top: {{v.startPx}}+'px', overflow: 'hidden', height: {{v.heightdiv}}+'px'}">
-                    <img ng-src="https://github.com/julianperrott/FruitMachineReel/blob/master/{{vm.symbols[v.symbolNo]}}?raw=true" style="border: 1px solid black" ng-style="{height: {{v.height}}+'px', width: '130px', position: 'relative', top: {{v.imgTop}}+'px'}" />
+                    <img ng-src="{{vm.symbols[v.symbolNo]}}?raw=true" style="border: 1px solid black" ng-style="{height: {{v.height}}+'px', width: '130px', position: 'relative', top: {{v.imgTop}}+'px'}" />
                 </div>
             </div>
     </div>
     <button ng-click="vm.start()">Start Rolling</button>
     <button ng-click="vm.stop()">Stop Rolling</button>
     <button ng-click="vm.move()">Step forward</button>
+</div>
+
+    <div ng-controller="fruitMachine2 as vm">
+            <div style="background: grey; height:620px; width:550px;position:relative; left:10px; top: 750px;">
+                
+                <canvas id="myCanvas" width="302" height="600" style="background: white;border:1px solid #000000;position:absolute;top: 10px;left: 10px;">
+                </canvas>
+                
+                
+                <div ng-repeat="reel in vm.reelViews" 
+                style="z-index: 20;position: absolute; top: 10px; left: 350px; width: 130px; height: 600px"
+                ng-style="{ ,background: 'white'}">
+                    <div 
+                    ng-repeat="v in reel" 
+                    ng-style="{ 
+                        position: 'absolute', 
+                        top: {{v.startPx}}+'px',
+                        overflow: 'hidden', 
+                        height: {{v.heightdiv}}+'px'
+                    }">
+                        <img 
+                        ng-src="{{vm.symbols[v.symbolNo]}}?raw=true" 
+                        style="border: 1px solid black" 
+                        ng-style="{
+                        height: {{v.height}}+'px', 
+                        width: '130px', 
+                        position: 'relative', 
+                        top: {{v.imgTop}}+'px'
+                        }" />
+                    </div>
+                    
+                    <div 
+                    ng-repeat="v in reel" 
+                    style="position: absolute;"
+                    ng-style="{ top: {{v.startPx}}+'px' }">
+                        <div 
+                        style="border: 1px solid black;left: 180px;position: relative;background: white;padding: 2px" 
+                    ng-style="{top: {{v.imgTop+v.height/4}}+'px'}" >
+                        height:{{v.heightdiv}}, y: {{v.startPx}}, {{vm.symbols[v.symbolNo]}}</div>
+                        
+                    </div>
+                </div>
+                
+                <canvas id="myCanvas2" width="302" height="600"
+                style="background: transparent;position:absolute;top: 10px;left: 350px; z-index: 10">
+                </canvas>
+        </div>
+        <div style="margin:10px;margin-top: 100px">
+            <button ng-click="vm.start()">Start Rolling</button>
+            <button ng-click="vm.stop()">Stop Rolling</button>
+            <button ng-click="vm.move()">Step forward</button>
+        </div>
+    </div>
+    <div style="margin-top:700px">&nbsp;</div>
 </body>
 </html>
