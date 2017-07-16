@@ -41,4 +41,5 @@ The result is a reasonably convincing representation of a fruit machine reel. It
 
 
 [Link to plunker](https://run.plnkr.co/plunks/hHpbWM/)
-![Demo Screenshot 2](images/ImageInfo.png "")
+
+![Demo Screenshot 2](images/ImageInfo.png "Demo Screenshot 2")
